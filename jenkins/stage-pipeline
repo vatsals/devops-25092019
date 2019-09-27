@@ -1,0 +1,22 @@
+node {
+stage('Git CheckOut') {
+    git 'https://github.com/amitvashist7/devops-sg-25092019.git'
+}    
+
+def project_path = "atmosphere/spring-boot-samples/spring-boot-sample-atmosphere"
+   
+   dir(project_path) {
+ stage('Package Clean') {  
+   sh label: '', script: 'mvn clean'
+ }
+  stage('Compile') { 
+   sh label: '', script: 'mvn compile'
+  } 
+  stage('Test') { 
+   sh label: '', script: 'mvn test' 
+  }
+   stage('Package') { 
+   sh label: '', script: 'mvn package'
+   }
+   }
+}
